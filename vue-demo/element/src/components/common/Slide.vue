@@ -5,7 +5,7 @@
       class="el-menu-vertical-demo"
       background-color="#eeeeee" router
     >
-      <el-menu-item index="/">
+      <el-menu-item index="/main">
         <i class="el-icon-menu"></i>
         <span slot="title">首页</span>
       </el-menu-item>
@@ -15,7 +15,7 @@
           <span>用户管理</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="2-1">用户列表</el-menu-item>
+          <el-menu-item index="/main/user-list">用户列表</el-menu-item>
           <el-menu-item index="2-2">用户信息</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
