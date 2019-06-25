@@ -9,7 +9,7 @@ import BScroll from 'better-scroll'
 const DIRECTION_H = 'horizontal'
 const DIRECTION_V = 'vertical'
 export default {
-  name:'scroll',
+  name:'scroll', 
   props:{
     /**
       * 1 滚动的时候会派发scroll事件，会节流。

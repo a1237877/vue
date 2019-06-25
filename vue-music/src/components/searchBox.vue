@@ -8,8 +8,9 @@
 </template>
  
 <script>
+import {debounce} from '@/common/util'
 export default {
-  props: {
+  props: { 
     placeholder: {
       type: String,
       default: '搜索歌曲、歌手'
@@ -30,7 +31,13 @@ export default {
     blur () {
       this.$refs.query.blur()
     }
-  }
+  },
+  created() {
+    this.$watch('query',debounce((newQuery)=>{
+      this.$emit('query',newQuery)
+    }))
+  },
+
 }
 </script>
 <style lang='stylus' scoped>
