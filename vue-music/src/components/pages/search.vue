@@ -32,7 +32,7 @@
             </h1>
 
             <!-- 搜索历史列表 -->
-            <v-searchList></v-searchList>
+            <v-searchList :searches="searchHistory"></v-searchList>
           </div>
         </div>
       </v-scroll>
@@ -40,39 +40,62 @@
 
     <!-- 搜索结果 -->
     <div class="search-result" v-show="query" ref="searchResult">
-      <v-suggest :query="query"></v-suggest>
+      <v-suggest :query="query" @select="saveSearch" ref="suggest" @listScroll="blurInput"></v-suggest>
     </div>
   </div>
 </template>
 
 <script>
+import api from '@/api/index'
 import searchBox from '@/components/searchBox'
 import scroll from '@/components/scroll'
 import searchList from './searchList'
 import suggest from '@/components/suggest'
+import {mapGetters} from 'vuex'
 export default {
   data () {
     return {
       query: '',
-      shortcut: [],
+      shortcut: [], 
       hotKey: [
-        {first: '许嵩新歌发布'},
-        {first: '许新歌发布'},
-        {first: '嵩新歌发布'},
-        {first: '许三高新歌发布'},
-        {first: '许山高新歌发布'},
-        {first: '许山高ssss歌发布'}
-
       ],
-      searchHistory:[1]
+      searches:[],
+      refreshDelay:20
     }
   },
+  computed: {
+    ...mapGetters([
+      'searchHistory'
+    ]),
+  
+  },
+
   methods: {
+    blurInput(){
+
+    },
+    _getHotKey(){
+      api.HotSearchKey().then((res)=>{
+        if(res.code === 200){
+          console.log(res)
+          this.hotKey = res.result.hots.slice(0,10)
+        }
+      })
+    },
+    saveSearch(item){
+      console.log(item)
+     this.$store.dispatch('saveSearchHistory', data)
+
+    },
     showConfirm(){},
     onQueryChange(query){
       // console.log(query)
       this.query = query
     }
+  },
+  created() {
+    this._getHotKey();
+    //  this.$store.dispatch('saveSearchHistory', this.query)
   },
  
   components: {

@@ -6,7 +6,7 @@
         <span class="icon-box" @click.stop="deleteOne(item)">
           <i class="icon">&#xe656;</i>
         </span>
-      </li>
+      </li> 
     </transition-group>
   </div>
 </template>
@@ -21,7 +21,7 @@ export default {
   props:{
     searches:{
       type:Array,
-      default:['许嵩']
+      default:[]
     }
   }
 }
