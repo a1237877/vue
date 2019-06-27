@@ -1,10 +1,11 @@
 import api from '../../api'
 import * as types from '../types'
 
+
 const state = {
   showSidebar: false,
   fullScreen: false,
-  searchHistory:[]
+  searchHistory:[123]
 }
 
 const mutations = {
@@ -31,7 +32,8 @@ const actions = {
     let searchHistory = {query,...state.searchHistory.slice()};
     searchHistory = [...new Set(searchHistory)]
     commit(types.COM_SAVE_SEARCH_HISTORY,searchHistory)
-  }
+  },
+  
 
 }
 

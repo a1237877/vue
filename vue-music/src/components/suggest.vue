@@ -7,7 +7,7 @@
           <i class="icon">&#xe641;</i>
         </div>
         <div class="name">
-          <p class="text" v-html="getDisplayName(item)"></p>
+          <p class="text" v-html="getDisplayName(item)"></p> 
         </div>
       </li>
       <!-- <loading v-show="hasMore" class="loading-wraper"></loading> -->

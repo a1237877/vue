@@ -8,7 +8,7 @@
 </template>
  
 <script>
-import {debounce} from '@/common/util'
+import {debounce} from '@/common/util' 
 export default {
   props: { 
     placeholder: {

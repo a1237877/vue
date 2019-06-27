@@ -2,7 +2,7 @@
   <div class="search">
     <div class="search-box-wrapper">
       <!-- 搜索框 -->
-      <v-search-box @query="onQueryChange"></v-search-box>
+      <v-search-box @query="onQueryChange" ref="searchBox"></v-search-box>
     </div>
     <div class="shortcut-wrapper" ref="shortcutWrapper" v-show="!query">
       <v-scroll class="shortcut" ref="shortcut" :data="shortcut" :refreshDelay="refreshDelay">
@@ -32,7 +32,7 @@
             </h1>
 
             <!-- 搜索历史列表 -->
-            <v-searchList :searches="searchHistory"></v-searchList>
+            <v-searchList :searches="searchHistory" @select="addQuery"></v-searchList>
           </div>
         </div>
       </v-scroll>
@@ -52,6 +52,7 @@ import scroll from '@/components/scroll'
 import searchList from './searchList'
 import suggest from '@/components/suggest'
 import {mapGetters} from 'vuex'
+import {searchMixin} from '@/common/mixin.js'
 export default {
   data () {
     return {
@@ -69,11 +70,10 @@ export default {
     ]),
   
   },
+  mixins:[searchMixin],    //引入searchMixin
 
   methods: {
-    blurInput(){
-
-    },
+    
     _getHotKey(){
       api.HotSearchKey().then((res)=>{
         if(res.code === 200){
@@ -82,16 +82,13 @@ export default {
         }
       })
     },
-    saveSearch(item){
-      console.log(item)
-     this.$store.dispatch('saveSearchHistory', data)
+    // saveSearch(item){
+    //   console.log(item)
+    //  this.$store.dispatch('saveSearchHistory', data)
 
-    },
+    // },
     showConfirm(){},
-    onQueryChange(query){
-      // console.log(query)
-      this.query = query
-    }
+    
   },
   created() {
     this._getHotKey();

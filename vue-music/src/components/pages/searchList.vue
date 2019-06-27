@@ -3,7 +3,7 @@
     <transition-group name="list" tag="ul">
       <li class="search-item" v-for="item in searches" :key="item" @click="searchItem(item)">
         <span class="text">{{item}}</span>
-        <span class="icon-box" @click.stop="deleteOne(item)">
+        <span class="icon-box" @click.stop="deleteOne(item)"> 
           <i class="icon">&#xe656;</i>
         </span>
       </li> 
